@@ -4,7 +4,7 @@ const PostContent = ({ onInputClick }) => {
         <div className="flex items-center">
           <img
             className="w-10 h-10 md:w-12 rounded-full"
-            src="./images/18d97bf8ec274f791636.jpg"
+            src="../images/18d97bf8ec274f791636.jpg"
           />
           <input
             placeholder="   Hey Minh, What do you think?"
@@ -16,21 +16,21 @@ const PostContent = ({ onInputClick }) => {
         <div className="flex justify-between">
           <div className="flex items-center cursor-pointer hover:bg-gray-300 rounded-full p-2">
             <img
-              src="./images1/icons8-video-camera-64.png"
+              src="../images1/icons8-video-camera-64.png"
               width={30}
             />
             <p className="ml-2">Live video</p>
           </div>
           <div className="flex items-center cursor-pointer hover:bg-gray-300 rounded-full p-2">
             <img
-              src="./images1/icons8-image-64.png"
+              src="../images1/icons8-image-64.png"
               width={30}
             />
             <p className="ml-2">Image/video</p>
           </div>
           <div className="hidden md:flex items-center cursor-pointer hover:bg-gray-300 rounded-full p-2">
             <img
-              src="./images1/icons8-reaction-64.png"
+              src="../images1/icons8-reaction-64.png"
               width={30}
             />
             <p className="ml-2">Reaction</p>

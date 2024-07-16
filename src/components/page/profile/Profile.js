@@ -1,24 +1,25 @@
-import HeadProfile from "../../components/HeadProfile";
-import Header from "../../components/Header";
-import LeftProfile from "../../components/LeftProfile";
-import MainContent from "../../components/MainContent";
-import OpenModalPost from "../../components/OpenModalPost";
-import PostContent from "../../components/PostContent";
-import RightProfile from "../../components/RightProfile";
+import HeadProfile from "../../profile/HeadProfile";
+import Header from "../../homePage/Header";
+import LeftProfile from "../../profile/LeftProfile";
+import MainContent from "../../homePage/MainContent";
+import OpenModalPost from "../../OpenModalPost";
+import RightProfile from '../../profile/RightProfile';
+import { useParams } from "react-router";
 
-export default function Profile() {
+export default function Profile({params}) {
+    const {id} = useParams();
     return (
         <div className="bg-gray-200 h-full">
             <Header />
             <div>
-                <HeadProfile/>
+                <HeadProfile id={`${id}`}/>
             </div>
             <div className="lg:hidden">
                 <div className="mx-5 mt-5 lg:hidden">
                     <OpenModalPost/>
                 </div>
                 <div className="mx-5 mt-5 lg:hidden">
-                    <MainContent/>
+                    <MainContent id={`${id}`}/>
                 </div>
             </div>
             <div className="hidden lg:flex justify-between lg:mx-80 mt-2">
@@ -26,7 +27,7 @@ export default function Profile() {
                     <LeftProfile/>
                 </div>
                 <div className="rounded-md" style={{ width: '685px' }}>
-                    <RightProfile/>
+                    <RightProfile id={`${id}`}/>
                 </div>
             </div>
             <div className="h-8"></div>

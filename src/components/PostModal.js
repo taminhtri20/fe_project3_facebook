@@ -1,23 +1,23 @@
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const PostModal = ({ onClose }) => {
   const [isActive, setIsActive] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null); // New state for the selected image
-  const [imagePreview, setImagePreview] = useState(null); // State to hold the image preview
+  const [selectedImage, setSelectedImage] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
+  const [file, setFile] = useState(null); // State to hold the selected file
+  const [isLoading, setIsLoading] = useState(false); // State for loading spinner
 
   const [post, setPost] = useState({
     title: '',
     content: '',
-    user: {
-      id: currentUser.id
-    }
+    userId: currentUser.id
   });
 
   const handleChange = (e) => {
@@ -30,33 +30,35 @@ const PostModal = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = {};
-        for (let field in post) {
-            if (!post[field]) {
-                newErrors[field] = true;
-            }
-            if (post[field] !== "") {
-                if (newErrors[field] !== false) {
-                    delete newErrors[field];
-                }
-            }
+    setIsLoading(true); // Set loading state to true
+
+    const formData = new FormData();
+    formData.append('title', post.title);
+    formData.append('file', file); // Append file to FormData
+    formData.append('content', "");
+    formData.append('userId', post.userId); // Ensure this matches the backend userId param name
+
+    try {
+      axios.defaults.headers.common["Authorization"] = "Bearer " + currentUser.accessToken;
+      const res = await axios.post('http://localhost:8080/post/savePost', formData);
+
+      // Simulate a delay of 5 seconds
+      setTimeout(() => {
+        setIsLoading(false); // Set loading state to false after delay
+        if (res.data === 'Upload success') {
+          enqueueSnackbar(res.data, { variant: 'success', anchorOrigin: { horizontal: 'right', vertical: 'top' } });
+          onClose();
+          window.location.href = "homePage";
+        } else {
+          enqueueSnackbar('Upload failed', { variant: 'error', anchorOrigin: { horizontal: 'right', vertical: 'top' } });
+          window.location.href = "homePage";
         }
-        setErrors(newErrors);
-        if (Object.keys(newErrors).length <= 1) {
-          try {
-            const res = await axios.post(`http://localhost:8080/post/savePost`, post);
-            if (res.data === "Upload success") {
-              enqueueSnackbar(res.data, { variant: "success", anchorOrigin: { horizontal: "right", vertical: "top" } });
-              onClose();
-              window.location.href = "/homePage";
-            } else {
-              enqueueSnackbar("Upload failed", { variant: "error", anchorOrigin: { horizontal: "right", vertical: "top" } });
-              navigate("/homePage");
-            }
-          } catch (error) {
-            console.error(error);
-          }
-      }
+      }, 3000);
+    } catch (error) {
+      console.error(error);
+      enqueueSnackbar('Error uploading post', { variant: 'error', anchorOrigin: { horizontal: 'right', vertical: 'top' } });
+      setIsLoading(false); // Ensure loading state is set to false on error
+    }
   };
 
   const handleImageClick = () => {
@@ -68,36 +70,43 @@ const PostModal = ({ onClose }) => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setImagePreview(imageUrl);
+      setFile(file); // Set the selected file
       setPost((prevPost) => ({
         ...prevPost,
-        content: imageUrl // Lưu đường dẫn của ảnh vào content
+        content: imageUrl
       }));
       setSelectedImage(false);
     }
   };
-  
+
   const handleRemoveImage = () => {
     setImagePreview(null);
+    setFile(null); // Clear the selected file
     setPost((prevPost) => ({
       ...prevPost,
-      content: '' // Xóa đường dẫn của ảnh khi người dùng xóa ảnh
+      content: ''
     }));
   };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
       <div className="bg-white rounded-md shadow-lg transition-all duration-200 w-full md:w-2/3 lg:w-1/3 h-auto md:h-auto">
+        {isLoading && (
+          <div className="flex items-center justify-center absolute inset-0 bg-opacity-75 bg-gray-500 z-20">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+          </div>
+        )}
         <Post
           setIsActive={setIsActive}
           onClose={onClose}
           handleSubmit={handleSubmit}
           post={post}
           handleChange={handleChange}
-          handleImageClick={handleImageClick} // Pass the image click handler
-          selectedImage={selectedImage} // Pass the selected image
-          imagePreview={imagePreview} // Pass the image preview
-          handleImageChange={handleImageChange} // Pass the image change handler
-          handleRemoveImage={handleRemoveImage} // Pass the remove image handler
+          handleImageClick={handleImageClick}
+          selectedImage={selectedImage}
+          imagePreview={imagePreview}
+          handleImageChange={handleImageChange}
+          handleRemoveImage={handleRemoveImage}
           errors={errors}
         />
       </div>
@@ -112,14 +121,14 @@ const Post = ({ setIsActive, onClose, handleSubmit, post, handleChange, handleIm
       <div className="rounded-full w-8 h-8 bg-gray-200 cursor-pointer flex items-center justify-center ml-auto" onClick={() => { setIsActive(false); onClose(); }}>
         <img
           className="w-6 h-6"
-          src="./images1/close_24dp_FILL0_wght400_GRAD0_opsz24.png"
+          src="../images1/close_24dp_FILL0_wght400_GRAD0_opsz24.png"
           alt="Close"
         />
       </div>
     </div>
     <form onSubmit={handleSubmit}>
       <div className="flex items-center mt-4">
-        <img className="rounded-full w-12 h-12" src="./images/18d97bf8ec274f791636.jpg" alt="logo" />
+        <img className="rounded-full w-12 h-12" src="../images/18d97bf8ec274f791636.jpg" alt="logo" />
         <div className="ml-3">
           <p className="font-medium text-lg">Ta Minh Tri</p>
           <div className="flex items-center cursor-pointer bg-gray-200 rounded-full px-2 py-1 mt-1" onClick={() => setIsActive(true)}>
@@ -151,15 +160,16 @@ const Post = ({ setIsActive, onClose, handleSubmit, post, handleChange, handleIm
             onClick={handleRemoveImage}
           >
             <img
-            className='w-6 -6'
-            src='./images1/close_24dp_FILL0_wght400_GRAD0_opsz24.png'
+              className='w-6 h-6'
+              src='../images1/close_24dp_FILL0_wght400_GRAD0_opsz24.png'
+              alt="Close"
             />
           </button>
         </div>
       )}
       <div className="flex justify-between items-center mt-4">
-        <img className="w-6 cursor-pointer" src="./icons/theme.svg" alt="theme" onClick={handleImageClick} />
-        <img className="w-6 cursor-pointer" src="./icons/smile.svg" alt="smile" onClick={handleImageClick} />
+        <img className="w-6 cursor-pointer" src="../icons/theme.svg" alt="theme" onClick={handleImageClick} />
+        <img className="w-6 cursor-pointer" src="../icons/smile.svg" alt="smile" onClick={handleImageClick} />
       </div>
       <div className="flex items-center justify-between mt-4 p-3 border rounded-md">
         <p className="text-sm font-medium text-gray-700">Add to Your Post</p>

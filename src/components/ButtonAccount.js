@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { doLogout } from './AuthContext';
+import { doLogout } from './authContext/AuthContext';
 
 const Account = ({ showAccountForm, toggleAccountForm }) => {
   const accountFormRef = useRef(null);
@@ -32,13 +32,13 @@ const Account = ({ showAccountForm, toggleAccountForm }) => {
           <h2 className='text-lg font-bold'>Account</h2>
           <img
             className='w-6 h-6 cursor-pointer'
-            src='./images1/close_24dp_FILL0_wght400_GRAD0_opsz24.png'
+            src='../images1/close_24dp_FILL0_wght400_GRAD0_opsz24.png'
             onClick={toggleAccountForm}
           />
         </div>
         <div className='p-4'>
-          <Link to={'/profile'} className='flex items-center mb-4 hover:bg-gray-100 rounded-md'>
-            <img className='w-10 h-10 rounded-full' src='./images/18d97bf8ec274f791636.jpg' />
+          <Link to={'/profile/'+currentUser.id} className='flex items-center mb-4 hover:bg-gray-100 rounded-md'>
+            <img className='w-10 h-10 rounded-full' src='../images/18d97bf8ec274f791636.jpg' />
             <div className='ml-3'>
               <p className='font-bold'>{currentUser.username}</p>
               <p className='text-sm text-gray-600'>View your profile</p>
@@ -48,21 +48,21 @@ const Account = ({ showAccountForm, toggleAccountForm }) => {
             <div className='flex items-center hover:bg-gray-100 rounded-md'>
                 <img
                 className='w-5 h-5 rounded-full'
-                src='./images/settings-icon-1964x2048-8nigtrtt.png'
+                src='../images/settings-icon-1964x2048-8nigtrtt.png'
                 />
             <button className='w-full text-left py-2 px-4'>Settings & Privacy</button>
             </div>
             <div className='flex items-center hover:bg-gray-100 rounded-md'>
             <img
                 className='w-5 h-5 rounded-full'
-                src='./images/help-icon-png-16.jpg'
+                src='../images/help-icon-png-16.jpg'
                 />
             <button className='w-full text-left py-2 px-4'>Help & Support</button>
             </div>
             <div className='flex items-center hover:bg-gray-100 rounded-md'>
             <img
                 className='w-5 h-5 '
-                src='./images/exit-icon-vector-22391092.jpg'
+                src='../images/exit-icon-vector-22391092.jpg'
                 />
             <button onClick={()=>{doLogout(navigate)}} className='w-full text-left py-2 px-4'>Log Out</button>
             </div>

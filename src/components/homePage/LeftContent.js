@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 
 const LeftContent = () => {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     return (
         <div className="hidden lg:block bg-gray-100 w-1/3 h-screen mt-10 fixed top-0 left-0">
-            <Link to={'/profile'}>
+            <Link to={'/profile/'+currentUser.id}>
             <div className="flex items-center ml-3 mt-5 w-1/2 hover:bg-gray-300 cursor-pointer rounded-md p-2">
                 <div className="">
                     <img 

@@ -1,4 +1,20 @@
-const HeadSearch = () => {
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+
+const HeadSearch = ({ searchValue1 }) => {
+    const [searchValue, setSearchValue] = useState(searchValue1);
+    const navigate = useNavigate();
+    const handleSearchInputChange = (event) => {
+        setSearchValue(event.target.value);
+    };
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            navigate(`/search?searchValue=${searchValue}`);
+        }
+    };
+    useEffect(() => {
+    }, [searchValue])
     return (
         <div className="bg-white">
             <div className="flex h-[52px] items-center">
@@ -10,14 +26,17 @@ const HeadSearch = () => {
                     <input
                         placeholder="Search Facebook"
                         className="text-sm focus:outline-none bg-transparent w-full ml-3"
+                        value={searchValue}
+                        onChange={handleSearchInputChange}
+                        onKeyDown={handleKeyDown}
                     />
                     <img
-                    className="w-5 h-5 mr-2"
-                    src="./images1/close_24dp_FILL0_wght400_GRAD0_opsz24.png"/>
+                        className="w-5 h-5 mr-2"
+                        src="./images1/close_24dp_FILL0_wght400_GRAD0_opsz24.png" />
                 </div>
                 <img
-                className="w-6 h-6 ml-2 md:ml-2"
-                src="./images/search_24dp_FILL0_wght400_GRAD0_opsz24.png"
+                    className="w-6 h-6 ml-2 md:ml-2"
+                    src="./images/search_24dp_FILL0_wght400_GRAD0_opsz24.png"
                 />
             </div>
             <div className="flex justify-between items-center h-[46px] mx-3">

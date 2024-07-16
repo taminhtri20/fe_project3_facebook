@@ -33,7 +33,10 @@ function AuthContext({ children }) {
                 enqueueSnackbar(res.data, { variant: "success", anchorOrigin: { horizontal: "right", vertical: "top" } });
                 navigate("/login");// Điều hướng người dùng đến trang chủ
             }else if(res.data === "Invalid token"){
-                enqueueSnackbar(res.data, { variant: "error", anchorOrigin: { horizontal: "right", vertical: "top" } });
+                localStorage.setItem('currentLocation', '');
+                localStorage.removeItem("currentUser"); // Xóa thông tin người dùng khỏi localStorage
+                enqueueSnackbar(res.data, { variant: "success", anchorOrigin: { horizontal: "right", vertical: "top" } });
+                navigate("/login");// Điều hướng người dùng đến trang chủ
             }
         }).catch(e => {
             console.error(e); // In lỗi ra console

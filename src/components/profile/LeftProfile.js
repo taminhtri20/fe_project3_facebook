@@ -1,6 +1,6 @@
 const LeftProfile = () => {
     return (
-        <div className="">
+        <div className="mt-5">
             <div className="bg-white  md:h-auto shadow-md rounded-md">
                 <div className="mx-5 flex justify-between">
                     <h1 className="font-bold text-xl md:mt-3">Picture</h1>
@@ -10,19 +10,19 @@ const LeftProfile = () => {
                     <div>
                         <img
                             className="rounded-md w-36 h-36 "
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                     </div>
                     <div>
                         <img
                             className="rounded-md w-36 h-36 "
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                     </div>
                     <div>
                         <img
                             className="rounded-md w-36 h-36 "
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                     </div>
                 </div>
@@ -30,19 +30,19 @@ const LeftProfile = () => {
                     <div>
                         <img
                             className="rounded-md w-36 h-36 "
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                     </div>
                     <div>
                         <img
                             className="rounded-md w-36 h-36 "
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                     </div>
                     <div>
                         <img
                             className="rounded-md w-36 h-36 "
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                     </div>
                 </div>
@@ -62,21 +62,21 @@ const LeftProfile = () => {
                     <div className="">
                         <img
                             className="w-36 h-36  rounded-md"
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                         <p className="font-bold md:text-lg">Ta Minh Tri</p>
                     </div>
                     <div className="">
                         <img
                             className="w-36 h-36 rounded-md"
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                         <p className="font-bold md:text-lg">Ta Minh Tri</p>
                     </div>
                     <div className="">
                         <img
                             className="w-36 h-36  rounded-md"
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                         <p className="font-bold md:text-lg">Ta Minh Tri</p>
                     </div>
@@ -85,21 +85,21 @@ const LeftProfile = () => {
                     <div className="">
                         <img
                             className="w-36 h-36  rounded-md"
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                         <p className="font-bold md:text-lg">Ta Minh Tri</p>
                     </div>
                     <div className="">
                         <img
                             className="w-36 h-36 rounded-md"
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                         <p className="font-bold md:text-lg">Ta Minh Tri</p>
                     </div>
                     <div className="">
                         <img
                             className="w-36 h-36  rounded-md"
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                         <p className="font-bold md:text-lg">Ta Minh Tri</p>
                     </div>
@@ -108,21 +108,21 @@ const LeftProfile = () => {
                     <div className="">
                         <img
                             className="w-36 h-36  rounded-md"
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                         <p className="font-bold md:text-lg">Ta Minh Tri</p>
                     </div>
                     <div className="">
                         <img
                             className="w-36 h-36 rounded-md"
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                         <p className="font-bold md:text-lg">Ta Minh Tri</p>
                     </div>
                     <div className="">
                         <img
                             className="w-36 h-36  rounded-md"
-                            src="./images/18d97bf8ec274f791636.jpg"
+                            src="../images/18d97bf8ec274f791636.jpg"
                         />
                         <p className="font-bold md:text-lg">Ta Minh Tri</p>
                     </div>

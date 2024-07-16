@@ -1,8 +1,7 @@
-import Content from "../../components/Content";
-import HeadContent from "../../components/HeadContent";
-import Header from "../../components/Header";
-import LeftContent from "../../components/LeftContent";
-import RightContent from "../../components/RightContent";
+import Header from "../../homePage/Header";
+import LeftContent from "../../homePage/LeftContent";
+import Content from "../../homePage/Content";
+import RightContent from "../../homePage/RightContent";
 
 export default function HomePage() {
     return(

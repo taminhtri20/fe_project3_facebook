@@ -28,7 +28,7 @@ const Notification = ({ showNotificationForm, toggleNotificationForm }) => {
           <h2 className='text-lg font-bold'>Notifications</h2>
           <img
             className='w-6 h-6 cursor-pointer'
-            src='./images1/close_24dp_FILL0_wght400_GRAD0_opsz24.png'
+            src='../images1/close_24dp_FILL0_wght400_GRAD0_opsz24.png'
             onClick={toggleNotificationForm}
           />
         </div>
@@ -36,7 +36,7 @@ const Notification = ({ showNotificationForm, toggleNotificationForm }) => {
           {[...Array(5)].map((_, index) => (
             <div key={index} className='flex items-center justify-between mb-4'>
               <div className='flex items-center'>
-                <img className='w-10 h-10 rounded-full' src='./images/18d97bf8ec274f791636.jpg' />
+                <img className='w-10 h-10 rounded-full' src='../images/18d97bf8ec274f791636.jpg' />
                 <p className='ml-3'>Notification {index + 1}</p>
               </div>
             </div>
