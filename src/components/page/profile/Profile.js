@@ -23,10 +23,10 @@ export default function Profile({params}) {
                 </div>
             </div>
             <div className="hidden lg:flex justify-between lg:mx-80 mt-2">
-                <div className="rounded-md h-full" style={{ position: '-webkit-sticky',   position: 'sticky',   top: '20px'}}>
+                <div className="rounded-md h-full w-1/3" style={{ position: '-webkit-sticky',   position: 'sticky',   top: '20px'}}>
                     <LeftProfile/>
                 </div>
-                <div className="rounded-md" style={{ width: '685px' }}>
+                <div className="rounded-md w-3/5">
                     <RightProfile id={`${id}`}/>
                 </div>
             </div>

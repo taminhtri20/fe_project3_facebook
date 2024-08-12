@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 const PostContent = ({ onInputClick }) => {
     return (
       <div className="bg-white rounded-md md:mx-12 md:mt-5 lg:mx-0 p-4 shadow-md">

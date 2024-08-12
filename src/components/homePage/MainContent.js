@@ -88,10 +88,13 @@ const MainContent = ({ id, searchValue}) => {
             const postLiked = posts.filter(post => post.id === postId);
             axios.defaults.headers.common["Authorization"] = "Bearer " + currentUser.accessToken;
             const res = await axios.put(`http://localhost:8080/post/likePost?idUserLike=${currentUser.id}`, postLiked[0]);
-            if (pathName === "/profile") {
-                const userPosts = res.data.filter(post => post.user.id === currentUser.id);
+            if (pathName === "/profile/" + id) {
+                const userPosts = res.data.filter(post => post.user.id == id);
                 setPosts(userPosts);
-            }else {
+            } else if(pathName === "/search"){
+                const res1 = await axios.get(`http://localhost:8080/post/searchingPost?searchValue=${searchValue}`);
+                setPosts(res1.data);
+            } else {
                 setPosts(res.data);
             }
             setLikeStates((prevLikeStates) => ({
@@ -102,9 +105,12 @@ const MainContent = ({ id, searchValue}) => {
             const postLiked = posts.filter(post => post.id === postId);
             axios.defaults.headers.common["Authorization"] = "Bearer " + currentUser.accessToken;
             const res = await axios.put(`http://localhost:8080/post/unlikePost?idUserLike=${currentUser.id}`, postLiked[0]);
-            if (pathName === "/profile") {
-                const userPosts = res.data.filter(post => post.user.id === currentUser.id);
+            if (pathName === "/profile/" + id) {
+                const userPosts = res.data.filter(post => post.user.id == id);
                 setPosts(userPosts);
+            }else if(pathName === "/search"){
+                const res1 = await axios.get(`http://localhost:8080/post/searchingPost?searchValue=${searchValue}`);
+                setPosts(res1.data);
             } else {
                 setPosts(res.data);
             }
@@ -204,7 +210,7 @@ const MainContent = ({ id, searchValue}) => {
                             <Link to={'/profile/' + item.user.id}>
                                 <img
                                     className="w-10 h-10 rounded-full"
-                                    src="../images/18d97bf8ec274f791636.jpg"
+                                    src={`http://localhost:8080/images/${item.user.avatar}`}
                                     alt="User"
                                 />
                             </Link>
@@ -303,20 +309,20 @@ const MainContent = ({ id, searchValue}) => {
                     <hr className="mx-3"></hr>
                     {item.comments.slice(0, showComment[item.id] ? 1 : item.comments.length).map((item1) => (
                         <div key={item1.id} className="h-auto">
-                            <div className="p-4 flex items-center">
+                            <div className="p-4 flex">
                                 <div>
                                     <img
-                                        className="w-6 h-6 rounded-full"
+                                        className="w-10 h-9 rounded-full mt-1"
                                         src="../images/18d97bf8ec274f791636.jpg"
                                     />
                                 </div>
-                                <div className="ml-2 bg-gray-200 w-[300px] md:w-[570px] rounded-2xl">
+                                <div className="ml-2 bg-gray-100 w-[300px] md:w-[570px] rounded-2xl">
                                     <div className="p-2">
                                         <div>
-                                            <p className="font-bold">{item1.user.firstName} {item1.user.lastName}</p>
+                                            <p className="font-bold text-sm">{item1.user.firstName} {item1.user.lastName}</p>
                                         </div>
                                         <div>
-                                            <p style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{item1.content}</p>
+                                            <p className="text-sm" style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>{item1.content}</p>
                                         </div>
                                     </div>
                                 </div>

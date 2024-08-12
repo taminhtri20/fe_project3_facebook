@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router';
 const Search = ({ showSearchForm, toggleSearchForm, searchValue1 }) => {
   const searchFormRef = useRef(null);
   const inputRef = useRef(null);
-  const [searchValue, setSearchValue] = useState(searchValue1);
-  const [formVisible, setFormVisible] = useState(true); // State để điều khiển ẩn hiện của form
+  const [searchValue, setSearchValue] = useState(searchValue1 || ''); // Initialize with empty string if searchValue1 is undefined
+  const [formVisible, setFormVisible] = useState(true); // State to control form visibility
   const navigate = useNavigate();
 
   const handleClickOutside = (event) => {
@@ -15,21 +15,21 @@ const Search = ({ showSearchForm, toggleSearchForm, searchValue1 }) => {
   };
 
   const handleSearchInputChange = (event) => {
-    setSearchValue(event.target.value);
+    setSearchValue(event.target.value || ''); // Set to empty string if undefined
   };
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       navigate(`/search?searchValue=${searchValue}`);
-      setFormVisible(false); // Ẩn form sau khi tìm kiếm
+      setFormVisible(false); // Hide form after search
     }
   };
 
   useEffect(() => {
     if (showSearchForm) {
       document.addEventListener('mousedown', handleClickOutside);
-      inputRef.current.focus(); // Focus vào ô input khi form hiển thị
+      inputRef.current.focus(); // Focus on input when form is shown
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
     }
@@ -40,7 +40,7 @@ const Search = ({ showSearchForm, toggleSearchForm, searchValue1 }) => {
   }, [showSearchForm]);
 
   return (
-    formVisible && showSearchForm && ( // Kiểm tra formVisible để quyết định có hiển thị form hay không
+    formVisible && showSearchForm && ( // Check formVisible to decide whether to show form
       <div ref={searchFormRef} className="fixed top-0 left-0 rounded-md w-80 max-h-[670px] bg-white shadow-lg z-50">
         <div className='flex items-center mt-2'>
           <img

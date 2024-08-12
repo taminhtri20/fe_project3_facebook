@@ -78,8 +78,7 @@ const HeadProfile = ({id}) =>{
         <div>
             <div className="bg-gray-200 lg:bg-white h-full">
                 <div className="bg-gray-200  h-36 md:h-72 lg:mx-72 lg:h-auto lg:rounded-md">
-                    <div className="hidden lg:block lg:h-64 bg-gray-200 lg:rounded-md"></div>
-                    <div className="hidden lg:block lg:h-52 bg-gray-200 lg:rounded-md"></div>
+                    <div className="hidden lg:block lg:h-[450px] bg-gray-200 lg:rounded-md"></div>
                 </div> 
                 <div className="bg-white">
                     <div className="lg:flex">

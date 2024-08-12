@@ -53,7 +53,7 @@ const PostModal = ({ onClose }) => {
           enqueueSnackbar('Upload failed', { variant: 'error', anchorOrigin: { horizontal: 'right', vertical: 'top' } });
           window.location.href = "homePage";
         }
-      }, 3000);
+      }, 1000);
     } catch (error) {
       console.error(error);
       enqueueSnackbar('Error uploading post', { variant: 'error', anchorOrigin: { horizontal: 'right', vertical: 'top' } });
@@ -174,11 +174,11 @@ const Post = ({ setIsActive, onClose, handleSubmit, post, handleChange, handleIm
       <div className="flex items-center justify-between mt-4 p-3 border rounded-md">
         <p className="text-sm font-medium text-gray-700">Add to Your Post</p>
         <ul className="flex space-x-2">
-          <li className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-gray-200" onClick={handleImageClick}><img src="./icons/gallery.svg" alt="gallery" /></li>
-          <li className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-gray-200" onClick={handleImageClick}><img src="./icons/tag.svg" alt="tag" /></li>
-          <li className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-gray-200" onClick={handleImageClick}><img src="./icons/emoji.svg" alt="emoji" /></li>
-          <li className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-gray-200" onClick={handleImageClick}><img src="./icons/mic.svg" alt="mic" /></li>
-          <li className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-gray-200" onClick={handleImageClick}><img src="./icons/more.svg" alt="more" /></li>
+          <li className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-gray-200" onClick={handleImageClick}><img src="../icons/gallery.svg" alt="gallery" /></li>
+          <li className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-gray-200" onClick={handleImageClick}><img src="../icons/tag.svg" alt="tag" /></li>
+          <li className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-gray-200" onClick={handleImageClick}><img src="../icons/emoji.svg" alt="emoji" /></li>
+          <li className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-gray-200" onClick={handleImageClick}><img src="../icons/mic.svg" alt="mic" /></li>
+          <li className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full cursor-pointer hover:bg-gray-200" onClick={handleImageClick}><img src="../icons/more.svg" alt="more" /></li>
         </ul>
       </div>
       <button type="submit" className="w-full mt-4 py-2 text-white font-medium rounded-md bg-blue-500 hover:bg-blue-600 focus:outline-none">Post</button>
